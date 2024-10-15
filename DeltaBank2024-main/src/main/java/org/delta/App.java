@@ -24,13 +24,14 @@ private DIContainer servicesContainer;
 private OwnerFactory ownerFactory;
 @Inject
 private BankAccountFactory bankAccount;
-
+@Inject
+private BankCardGenerator bankCardGenerator;
     public void run() throws Exception {
         Owner owner = ownerFactory.createOwner("Tomas", "Pesek", "123");
 
         BankAccount account = bankAccount.createBankAccount(owner, 500);
 
-        BankCardGenerator cardGenerator = servicesContainer.getBankCardGenerator();
+        BankCardGenerator cardGenerator = bankCardGenerator;
         BankCard card = cardGenerator.createBankCard("1234");
 
         account.addCard(card);
