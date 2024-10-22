@@ -59,4 +59,23 @@ public class BankAccount {
     public Map<String, BankCard> getAllCards() {
         return cards;
     }
+
+    public void getInfo(){
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Balance: " + balance);
+        System.out.println("Owner: " + owner.getName());
+        System.out.println("Cards: ");
+
+        for (BankCard card : cards.values()) {
+            System.out.println(card.getNumber());
+        }
+    }
+
+    public int getAmountOfBankCards(){
+        return cards.size();
+    }
+
+    public void assignNewCard(BankCard bankCard){
+        cards.put(bankCard.getNumber(), bankCard);
+    }
 }
