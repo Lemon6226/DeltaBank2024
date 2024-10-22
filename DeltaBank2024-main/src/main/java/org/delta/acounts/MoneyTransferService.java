@@ -1,5 +1,6 @@
 package org.delta.acounts;
 
+import com.google.inject.Inject;
 import org.delta.acounts.exceptions.NoMoneyOnAccountException;
 import org.delta.print.DetailPrinter;
 
@@ -8,6 +9,8 @@ public class MoneyTransferService {
     private final TransferFeeCalculator transferFeeCalculator;
     private final DetailPrinter accountDetailPrinter;
 
+
+    @Inject
     public MoneyTransferService(TransferFeeCalculator transferFeeCalculator, DetailPrinter accountDetailPrinter) {
         this.transferFeeCalculator = transferFeeCalculator;
         this.accountDetailPrinter = accountDetailPrinter;
