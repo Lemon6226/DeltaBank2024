@@ -24,8 +24,6 @@ public class App {
     @Inject
     private MoneyTransferService moneyTransferService;
 
-    @Inject
-    private BankAccount bankAccount;
 
     public void run() throws Exception {
         Owner owner = ownerFactory.createOwner("Tomas", "Pesek", "123");
@@ -39,9 +37,9 @@ public class App {
     private void testBank() throws Exception {
 
         Owner owner = this.ownerFactory.createOwner("Tomas", "Pesek", "123");
-        BankAccount accountOne = this.bankAccount.createBankAccount(owner, 500);
-        BankAccount accountTwo = this.bankAccount.createStudentBankAccount(owner, 1500, "expirace");
-        BankAccount accountThree = this.bankAccount.createSavingBankAccount(owner, 1500);
+        BankAccount accountOne = this.bankAccountFactory.createBankAccount(owner, 500);
+        BankAccount accountTwo = this.bankAccountFactory.createStudentBankAccount(owner, 1500, "expirace");
+        BankAccount accountThree = this.bankAccountFactory.createSavingBankAccount(owner, 1500);
 
 
 

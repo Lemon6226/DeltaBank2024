@@ -1,5 +1,7 @@
 package org.delta.acounts;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import org.delta.acounts.cards.BankCard;
 import org.delta.persons.Owner;
 
@@ -7,11 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.lang.Iterable;
 
+@Singleton
 public class BankAccount {
+
     private double balance;
     private Owner owner;
     private String accountNumber;
     private Map<String, BankCard> cards = new HashMap<>();
+
 
     public BankAccount(double balance, Owner owner, String accountNumber) {
         this.balance = balance;
