@@ -10,7 +10,6 @@ import java.util.List;
 
 @Singleton
 public class BankAccountFacade {
-
     private List<BankAccount> bankAccounts = new LinkedList<>();
 
     @Inject
