@@ -16,7 +16,7 @@ public class App {
     private OwnerFactory ownerFactory;
 
     @Inject
-    private BankAccountFactory bankAccountFactory;
+    private org.delta.accounts.BankAccountFactory bankAccountFactory;
 
     @Inject
     private BankCardGenerator bankCardGenerator;
