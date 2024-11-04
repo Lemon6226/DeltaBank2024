@@ -1,4 +1,4 @@
-package org.delta.accounts;
+package org.delta.acounts;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -13,7 +13,7 @@ public class BankAccountFacade {
     private List<BankAccount> bankAccounts = new LinkedList<>();
 
     @Inject
-    private org.delta.accounts.BankAccountFactory bankAccountFactory;
+    private org.delta.acounts.BankAccountFactory bankAccountFactory;
 
     public BankAccount createBankAccount(Owner owner, double balance) {
         BankAccount bankAccount = this.bankAccountFactory.createBankAccount(owner, balance);

@@ -1,9 +1,11 @@
 package org.delta.acounts;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import org.delta.acounts.exceptions.NoMoneyOnAccountException;
 import org.delta.print.DetailPrinter;
 
+@Singleton
 public class MoneyTransferService {
 
     private final TransferFeeCalculator transferFeeCalculator;

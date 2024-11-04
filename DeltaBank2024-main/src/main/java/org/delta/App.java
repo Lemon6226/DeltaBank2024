@@ -2,6 +2,7 @@ package org.delta;
 
 import com.google.inject.Inject;
 import org.delta.acounts.*;
+import org.delta.acounts.cards.ATMServices;
 import org.delta.acounts.cards.BankCard;
 import org.delta.acounts.cards.BankCardGenerator;
 import org.delta.acounts.exceptions.NoMoneyOnAccountException;
@@ -16,7 +17,7 @@ public class App {
     private OwnerFactory ownerFactory;
 
     @Inject
-    private org.delta.accounts.BankAccountFactory bankAccountFactory;
+    private org.delta.acounts.BankAccountFactory bankAccountFactory;
 
     @Inject
     private BankCardGenerator bankCardGenerator;
@@ -24,14 +25,21 @@ public class App {
     @Inject
     private MoneyTransferService moneyTransferService;
 
+    @Inject
+    private ATMServices atmServices;
+
 
     public void run() throws Exception {
         Owner owner = ownerFactory.createOwner("Tomas", "Pesek", "123");
         BankAccount account = bankAccountFactory.createBankAccount(owner, 500);
-        BankCard card = bankCardGenerator.createBankCard("1234");
+        String pin = "1234";
+        BankCard card = bankCardGenerator.createBankCard(account, pin);
         account.addCard(card);
         System.out.println("Card Number: " + card.getNumber());
         System.out.println("Card PIN: " + card.getPin());
+
+        String cardNumber = card.getNumber();
+        atmServices.getMoneyFromCard(cardNumber, pin, 200);
     }
 
     private void testBank() throws Exception {

@@ -1,6 +1,7 @@
 package org.delta.acounts.cards;
 
 import com.google.inject.Inject;
+import org.delta.acounts.BankAccount;
 
 public class BankCardGenerator {
     @Inject
@@ -9,8 +10,8 @@ public class BankCardGenerator {
     @Inject
     private BankCardFactory bankCardFactory;
 
-    public BankCard createBankCard(String pin) {
+    public BankCard createBankCard(BankAccount bankAccount, String pin) {
         String cardNumber = cardNumberGenerator.generateCardNumber();
-        return bankCardFactory.createBankCard(cardNumber, pin);
+        return bankCardFactory.createBankCard(bankAccount, cardNumber, pin);
     }
 }
