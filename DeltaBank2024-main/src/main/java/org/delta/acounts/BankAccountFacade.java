@@ -21,7 +21,21 @@ public class BankAccountFacade {
         return bankAccount;
     }
 
+
     public List<BankAccount> getBankAccounts() {
         return bankAccounts;
     }
+
+    public BankAccount createStudentBankAccount(Owner owner, double balance, String expire) {
+        BankAccount account = this.bankAccountFactory.createStudentBankAccount(owner, balance, expire);
+        this.bankAccounts.add(account);
+        return account;
+    }
+    public BankAccount createSavingBankAccount(Owner owner, double balance) {
+        BankAccount account = this.bankAccountFactory.createSavingBankAccount(owner, balance);
+        this.bankAccounts.add(account);
+        return account;
+    }
+
+
 }
