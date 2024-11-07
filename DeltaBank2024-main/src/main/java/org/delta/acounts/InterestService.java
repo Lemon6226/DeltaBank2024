@@ -3,13 +3,13 @@ package org.delta.acounts;
 import com.google.inject.Inject;
 import java.util.List;
 
-public class Interest {
+public class InterestService {
 
     private final InterestCalculator interestCalculator;
     private final BankAccountFacade bankAccountFacade;
 
     @Inject
-    public Interest(InterestCalculator interestCalculator, BankAccountFacade bankAccountFacade) {
+    public InterestService(InterestCalculator interestCalculator, BankAccountFacade bankAccountFacade) {
         this.interestCalculator = interestCalculator;
         this.bankAccountFacade = bankAccountFacade;
     }

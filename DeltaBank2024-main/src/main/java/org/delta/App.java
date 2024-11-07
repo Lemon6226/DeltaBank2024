@@ -40,6 +40,21 @@ public class App {
 
         String cardNumber = card.getNumber();
         atmServices.getMoneyFromCard(cardNumber, pin, 200);
+
+
+//        Injector injector = Guice.createInjector(new InvestmentModule());
+//        InvestmentFacade investmentFacade = injector.getInstance(InvestmentFacade.class);
+//
+//        double totalAmount = 10000.0; // Total amount to be invested
+//        investmentFacade.createInvestments(totalAmount);
+//
+//        System.out.println("Investments:");
+//        for (Investment investment : investmentFacade.getInvestments()) {
+//            System.out.println(investment);
+//        }
+//
+//        double totalReturn = investmentFacade.calculateTotalReturn();
+//        System.out.println("Total Expected Return: " + totalReturn);
     }
 
     private void testBank() throws Exception {
