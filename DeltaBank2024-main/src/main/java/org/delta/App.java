@@ -1,11 +1,16 @@
 package org.delta;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import org.delta.acounts.*;
 import org.delta.acounts.cards.ATMServices;
 import org.delta.acounts.cards.BankCard;
 import org.delta.acounts.cards.BankCardGenerator;
 import org.delta.acounts.exceptions.NoMoneyOnAccountException;
+import org.delta.investment.Investment;
+import org.delta.investment.InvestmentFacade;
+import org.delta.investment.InvestmentFactory;
 import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
 import org.delta.persons.PersonIdValidator;
@@ -40,6 +45,21 @@ public class App {
 
         String cardNumber = card.getNumber();
         atmServices.getMoneyFromCard(cardNumber, pin, 200);
+
+
+        InvestmentFactory investmentFactory = new InvestmentFactory();
+        InvestmentFacade investmentFacade = new InvestmentFacade(investmentFactory);
+
+        double totalAmount = 10000.0;
+        investmentFacade.createInvestments(totalAmount);
+
+        System.out.println("Investments:");
+        for (Investment investment : investmentFacade.getInvestments()) {
+            System.out.println(investment);
+        }
+
+        double totalReturn = investmentFacade.calculateTotalReturn();
+        System.out.println("Total return: " + totalReturn);
     }
 
     private void testBank() throws Exception {
