@@ -8,7 +8,8 @@ import org.delta.acounts.cards.ATMServices;
 import org.delta.acounts.cards.BankCard;
 import org.delta.acounts.cards.BankCardGenerator;
 import org.delta.acounts.exceptions.NoMoneyOnAccountException;
-import org.delta.investment.Investment;
+import org.delta.investment.InvestmentBankAccount;
+import org.delta.investment.InvestmentService;
 import org.delta.investment.InvestmentFacade;
 import org.delta.investment.InvestmentFactory;
 import org.delta.persons.Owner;
@@ -33,6 +34,12 @@ public class App {
     @Inject
     private ATMServices atmServices;
 
+    @Inject
+    private InvestmentFacade investmentFacade;
+
+    @Inject
+    private InvestmentFactory investmentFactory;
+
 
     public void run() throws Exception {
         Owner owner = ownerFactory.createOwner("Tomas", "Pesek", "123");
@@ -45,21 +52,6 @@ public class App {
 
         String cardNumber = card.getNumber();
         atmServices.getMoneyFromCard(cardNumber, pin, 200);
-
-
-        InvestmentFactory investmentFactory = new InvestmentFactory();
-        InvestmentFacade investmentFacade = new InvestmentFacade(investmentFactory);
-
-        double totalAmount = 10000.0;
-        investmentFacade.createInvestments(totalAmount);
-
-        System.out.println("Investments:");
-        for (Investment investment : investmentFacade.getInvestments()) {
-            System.out.println(investment);
-        }
-
-        double totalReturn = investmentFacade.calculateTotalReturn();
-        System.out.println("Total return: " + totalReturn);
     }
 
     private void testBank() throws Exception {

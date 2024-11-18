@@ -2,15 +2,15 @@ package org.delta.investment;
 
 public class InvestmentFactory {
 
-    public Investment createAppleInvestment(double amount) {
-        return new Investment("Apple", amount * 0.4, 0.04);
+    public InvestmentService createAppleInvestment(double amount) {
+        return new InvestmentService("Apple", amount * 0.4, 0.04);
     }
 
-    public Investment createAlphabetInvestment(double amount) {
-        return new Investment("Alphabet", amount * 0.4, 0.02);
+    public InvestmentService createAlphabetInvestment(double amount) {
+        return new InvestmentService("Alphabet", amount * 0.4, 0.02);
     }
 
-    public Investment createMetaInvestment(double amount) {
-        return new Investment("Meta", amount * 0.2, 0.01);
+    public InvestmentService createMetaInvestment(double amount) {
+        return new InvestmentService("Meta", amount * 0.2, 0.01);
     }
 }
