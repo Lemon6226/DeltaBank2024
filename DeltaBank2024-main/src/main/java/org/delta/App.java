@@ -16,6 +16,11 @@ import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
 import org.delta.persons.PersonIdValidator;
 import org.delta.print.DetailPrinter;
+import org.delta.service.SerializationService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class App {
 
@@ -40,21 +45,46 @@ public class App {
     @Inject
     private InvestmentFactory investmentFactory;
 
+    @Inject
+    private SerializationService serializationService;
+
+
+    private static final String BANK_ACCOUNTS_FILE = "C:\\Users\\vendu\\OneDrive\\Plocha\\DeltaBank2024-main\\DeltaBank2024-main\\src\\main\\java\\org\\delta\\bankAccounts.ser";
+
 
     public void run() throws Exception {
-        Owner owner = ownerFactory.createOwner("Tomas", "Pesek", "123");
+        Owner owner = ownerFactory.createOwner("Tomas", "Pešek", "123");
         BankAccount account = bankAccountFactory.createBankAccount(owner, 500);
-        String pin = "1234";
-        BankCard card = bankCardGenerator.createBankCard(account, pin);
+        BankCard card = bankCardGenerator.createBankCard(account, "1234");
         account.addCard(card);
-        System.out.println("Card Number: " + card.getNumber());
-        System.out.println("Card PIN: " + card.getPin());
+        System.out.println("Added card: " + card.getNumber());
+        System.out.println("Account cards: " + account.getAllCards().keySet());
 
-        String cardNumber = card.getNumber();
-        atmServices.getMoneyFromCard(cardNumber, pin, 200);
+        testSerialization(owner, account);
+    }
+
+    private void testSerialization(Owner owner, BankAccount account) throws Exception {
+        // vytvoří účty
+        List<BankAccount> accounts = new ArrayList<>();
+        accounts.add(account);
+        accounts.add(bankAccountFactory.createStudentBankAccount(owner, 1500, "2025-12-31"));
+        accounts.add(bankAccountFactory.createSavingBankAccount(owner, 2000));
+
+        //uloží účty do file
+        serializationService.serializeToFile(accounts, BANK_ACCOUNTS_FILE);
+
+        // vezme si data z file
+        List<BankAccount> loadedAccounts = serializationService.deserializeFromFile(BANK_ACCOUNTS_FILE, List.class);
+
+        // vypíše účty
+        for (BankAccount acc : loadedAccounts) {
+            acc.getInfo();
+        }
+
     }
 
     private void testBank() throws Exception {
+
 
         Owner owner = this.ownerFactory.createOwner("Tomas", "Pesek", "123");
         BankAccount accountOne = this.bankAccountFactory.createBankAccount(owner, 500);

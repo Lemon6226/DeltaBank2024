@@ -55,6 +55,8 @@ public class ATMServices {
         List<BankAccount> bankAccountList = bankAccountFacade.getBankAccounts();
 
         for (BankAccount bankAccount : bankAccountList) {
+            System.out.println("Checking account: " + bankAccount.getAccountNumber());
+            System.out.println("Available cards: " + bankAccount.getAllCards().keySet());
             BankCard card = bankAccount.getCard(cardNumber);
             if (card != null) {
                 return card;

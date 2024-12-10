@@ -2,7 +2,10 @@ package org.delta.acounts.cards;
 
 import org.delta.acounts.BankAccount;
 
-public class BankCard {
+import java.io.Serializable;
+
+public class BankCard implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String number;
     private String pin;
 

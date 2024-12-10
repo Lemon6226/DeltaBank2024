@@ -4,13 +4,16 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.delta.acounts.cards.BankCard;
 import org.delta.persons.Owner;
+import org.w3c.dom.ls.LSSerializer;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.Iterable;
 
 @Singleton
-public class BankAccount {
+public class BankAccount implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private double balance;
     private Owner owner;
@@ -69,6 +72,8 @@ public class BankAccount {
         for (BankCard card : cards.values()) {
             System.out.println(card.getNumber());
         }
+
+        System.out.println("--------------------------------------------");
     }
 
     public int getAmountOfBankCards(){

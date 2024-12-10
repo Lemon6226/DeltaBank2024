@@ -9,7 +9,7 @@ import org.delta.acounts.StudentBankAccount;
 import org.delta.persons.Owner;
 
 @Singleton
-public class BankAccountFactory {
+public class BankAccountFactory { 
 
     @Inject
     private AccountNumberGenerator bankAccountNumberGenerator;
